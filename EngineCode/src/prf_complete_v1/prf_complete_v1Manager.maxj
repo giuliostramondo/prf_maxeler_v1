@@ -1,0 +1,188 @@
+package prf_complete_v1;
+
+import com.maxeler.maxcompiler.v2.build.EngineParameters;
+import com.maxeler.maxcompiler.v2.managers.BuildConfig;
+import com.maxeler.maxcompiler.v2.managers.custom.CustomManager;
+import com.maxeler.maxcompiler.v2.managers.custom.DFELink;
+import com.maxeler.maxcompiler.v2.managers.custom.blocks.Fanout;
+import com.maxeler.maxcompiler.v2.managers.custom.blocks.KernelBlock;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.CPUTypes;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.EngineInterface;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.InterfaceParam;
+import com.maxeler.maxcompiler.v2.managers.standard.Manager;
+
+public class prf_complete_v1Manager extends CustomManager{
+
+	private static final String s_kernelName = "prf_complete_v1Kernel";
+    static int p = PRFConstants.p;
+    static int q = PRFConstants.q;
+
+    prf_complete_v1Manager(EngineParameters engineParameters){
+        super(engineParameters);
+        KernelBlock AGU = addKernel(
+                        new AGUKernel(makeKernelParameters("AGUKernel")));
+        KernelBlock parMem = addKernel(
+                        new ParallelMemoryVecKernel(makeKernelParameters("ParallelMemoryVecKernel")));
+        KernelBlock AStandard = addKernel(
+                        new A_standardKernel(makeKernelParameters("A_standardKernel")));
+        KernelBlock CrossbarAGU = addKernel(
+                        new CrossBar_29_11_2016Kernel(makeKernelParameters("CrossbarAGU")));
+        KernelBlock CrossbarData = addKernel(
+                        new CrossBar_29_11_2016Kernel(makeKernelParameters("CrossbarData")));
+        KernelBlock CrossbarOut = addKernel(
+                        new CrossBar_29_11_2016Kernel(makeKernelParameters("CrossbarOut")));
+        KernelBlock M_block = addKernel(
+                        new MBlockKernel(makeKernelParameters("M_block")));
+        KernelBlock inv_MBlockKernel_Address = addKernel(
+                        new inv_MBlockKernel(makeKernelParameters("inv_MBlockKernel_Address")));
+        KernelBlock inv_MBlockKernel_DataIn = addKernel(
+                        new inv_MBlockKernel(makeKernelParameters("inv_MBlockKernel_DataIn")));
+        KernelBlock PRFInputGen = addKernel(
+                        new PRFInputGen(makeKernelParameters("PRFInputGen")));
+        KernelBlock PRFOutputGen = addKernel(
+                        new PRFOutputGen(makeKernelParameters("PRFOutputGen")));
+
+
+        //CPU INPUTS
+        PRFInputGen.getInput("input_vector")<==addStreamFromCPU("input_vector");
+        //DFELink index_i = addStreamFromCPU("index_i");
+        DFELink index_i = PRFInputGen.getOutput("index_i");
+        //DFELink index_j = addStreamFromCPU("index_j");
+        DFELink index_j = PRFInputGen.getOutput("index_j");
+        //DFELink acc_type = addStreamFromCPU("acc_type");
+        DFELink acc_type = PRFInputGen.getOutput("acc_type");
+        //DFELink write_enable = addStreamFromCPU("write_enable");
+        DFELink write_enable = PRFInputGen.getOutput("write_enable");
+        parMem.getInput("write_enable")<== write_enable;
+        DFELink input_data[][] = new DFELink[p][q];
+
+        for(int i =0; i < p;i++)
+                for(int j = 0; j< q;j++){
+                        //input_data[i][j] = addStreamFromCPU("input_data_arr_"+i+"_"+j);
+                        input_data[i][j] =  PRFInputGen.getOutput("input_data_arr"+i+"_"+j);
+                }
+
+        Fanout acc_type_Fanout = fanout("acc_type_Fanout");
+        acc_type_Fanout.getInput() <== acc_type;
+        AGU.getInput("index_i") <== index_i;
+        AGU.getInput("index_j") <== index_j;
+        AGU.getInput("acc_type") <== acc_type_Fanout.addOutput("AGU_fan_acc");
+
+        DFELink AGU_output_vector = AGU.getOutput("outVector");
+
+        Fanout AGU_out_Fanout = fanout("AGU_out_Fanout");
+        AGU_out_Fanout.getInput() <== AGU_output_vector;
+        AStandard.getInput("outAGU") <== AGU_out_Fanout.addOutput("AStandard_fan");
+        inv_MBlockKernel_Address.getInput("outAGU") <== AGU_out_Fanout.addOutput("inv_MBlockKernel_Address_fan");
+        inv_MBlockKernel_DataIn.getInput("outAGU") <== AGU_out_Fanout.addOutput("inv_MBlockKernel_DataIn_fan");
+        inv_MBlockKernel_Address.getInput("acc_type") <== acc_type_Fanout.addOutput("inv_MBlockKernel_Address_fan_acc");
+        inv_MBlockKernel_DataIn.getInput("acc_type") <== acc_type_Fanout.addOutput("inv_MBlockKernel_DataIn_fan_acc");
+        M_block.getInput("outAGU") <== AGU_out_Fanout.addOutput("MBlock_fan");
+
+
+
+
+        for(int i =0; i < p;i++)
+                for(int j = 0; j< q;j++){
+                        //connecting the inv_M to the select signal of the address and data crossbar
+                        CrossbarAGU.getInput("o_i_"+i+"_"+j) <==        inv_MBlockKernel_Address.getOutput("o_i_"+i+"_"+j);
+                        CrossbarAGU.getInput("o_j_"+i+"_"+j) <==        inv_MBlockKernel_Address.getOutput("o_j_"+i+"_"+j);
+
+                        CrossbarData.getInput("o_i_"+i+"_"+j) <==       inv_MBlockKernel_DataIn.getOutput("o_i_"+i+"_"+j);
+                        CrossbarData.getInput("o_j_"+i+"_"+j) <==       inv_MBlockKernel_DataIn.getOutput("o_j_"+i+"_"+j);
+
+                        CrossbarOut.getInput("o_i_"+i+"_"+j) <==        M_block.getOutput("o_i_"+i+"_"+j);
+                        CrossbarOut.getInput("o_j_"+i+"_"+j) <==        M_block.getOutput("o_j_"+i+"_"+j);
+                        }
+
+
+
+        //parMem.getInput("write_enable")<== write_enable;
+
+        DFELink out;
+        for(int i =0; i < p;i++)
+                for(int j = 0; j< q;j++){
+                        //Connecting addresses generated by the AGU to the CrossbarAGU
+                        out = AStandard.getOutput("addr_"+i+"_"+j);
+                        CrossbarAGU.getInput("a_input_"+i+"_"+j)<==out;
+
+
+                        out = CrossbarAGU.getOutput("o_"+i+"_"+j);
+                        parMem.getInput("in_module_addr_"+i+"_"+j)<== out;
+
+                        CrossbarData.getInput("a_input_"+i+"_"+j)<== input_data[i][j];
+                        out = CrossbarData.getOutput("o_"+i+"_"+j);
+                        parMem.getInput("input_data_arr_"+i+"_"+j)<== out;
+
+                        out = parMem.getOutput("o_"+i+"_"+j);
+                        CrossbarOut.getInput("a_input_"+i+"_"+j)<== out;
+
+                        out = CrossbarOut.getOutput("o_"+i+"_"+j);
+                        PRFOutputGen.getInput("o_"+i+"_"+j)<== out;
+
+
+                }
+        out = PRFOutputGen.getOutput("output");
+        addStreamToCPU("output")<== out;
+    }
+	public static void main(String[] args) {
+		prf_complete_v1EngineParameters params = new prf_complete_v1EngineParameters(args);
+		prf_complete_v1Manager manager = new prf_complete_v1Manager(params);
+
+		manager.config.setDefaultStreamClockFrequency(PRFConstants.FREQUENCY);
+		manager.createSLiCinterface(interfaceDefault());
+
+		manager.build();
+
+	}
+
+	private static EngineInterface interfaceDefault() {
+
+        EngineInterface engine_interface = new EngineInterface();
+        CPUTypes   type = CPUTypes.INT32;
+        int        size = type.sizeInBytes();
+
+        //InterfaceParam  a    = engine_interface.addParam("A", CPUTypes.INT);
+        InterfaceParam  N    = engine_interface.addParam("N", CPUTypes.INT);
+
+
+        //engine_interface.setScalar(s_kernelName, "a", a);
+        engine_interface.setTicks("PRFInputGen", N);
+        engine_interface.setTicks("AGUKernel", N);
+        engine_interface.setTicks("inv_MBlockKernel_Address", N);
+        engine_interface.setTicks("inv_MBlockKernel_DataIn", N);
+        engine_interface.setTicks("M_block", N);
+        engine_interface.setTicks("ParallelMemoryVecKernel", N);
+        engine_interface.setTicks("A_standardKernel", N);
+        engine_interface.setTicks("CrossbarAGU", N);
+        engine_interface.setTicks("CrossbarData", N);
+        engine_interface.setTicks("CrossbarOut", N);
+        engine_interface.setTicks("PRFOutputGen", N);
+
+        engine_interface.route("AGU_out_Fanout -> AStandard_fan ,AGU_out_Fanout -> inv_MBlockKernel_Address_fan,AGU_out_Fanout -> inv_MBlockKernel_DataIn_fan,AGU_out_Fanout -> MBlock_fan");
+        engine_interface.route("acc_type_Fanout -> inv_MBlockKernel_Address_fan_acc,acc_type_Fanout -> inv_MBlockKernel_DataIn_fan_acc,acc_type_Fanout ->AGU_fan_acc");
+
+        //engine_interface.setStream("index_i",   type, N * size);
+        //engine_interface.setStream("index_j",   type, N * size);
+        //engine_interface.setStream("acc_type", type, N * size);
+        //engine_interface.setStream("write_enable", type, N * size);
+        engine_interface.setStream("input_vector", type, N * (size*p*q+size*4));
+        engine_interface.setStream("output",type, N * (size*p*q));
+//      for(int i =0; i < p;i++)
+//              for(int j = 0; j< q;j++){
+//                      engine_interface.setStream("out_"+i+"_"+j, type, N * size);
+//
+//              }
+
+
+        return engine_interface;
+	}
+
+	private static void configBuild(Manager manager, prf_complete_v1EngineParameters params) {
+		manager.setEnableStreamStatusBlocks(false);
+		BuildConfig buildConfig = manager.getBuildConfig();
+		buildConfig.setMPPRCostTableSearchRange(params.getMPPRStartCT(), params.getMPPREndCT());
+		buildConfig.setMPPRParallelism(params.getMPPRThreads());
+		buildConfig.setMPPRRetryNearMissesThreshold(params.getMPPRRetryThreshold());
+	}
+}

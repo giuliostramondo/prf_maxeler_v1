@@ -1,0 +1,211 @@
+*** After kernel graph-pass 'Init Graph' ***
+node "<{HWOffsetFix:32, 0, TWOSCOMPLEMENT}>" (ID 29) has unconnected outputs: [output]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.shiftRight(DFEVar.java:253)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:57)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "&" (ID 31) has unconnected outputs: [result]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.and(DFEVar.java:545)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:58)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "<{HWOffsetFix:32, 0, TWOSCOMPLEMENT}>" (ID 34) has unconnected outputs: [output]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.shiftRight(DFEVar.java:253)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:57)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "&" (ID 36) has unconnected outputs: [result]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.and(DFEVar.java:545)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:58)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "<{HWOffsetFix:32, 0, TWOSCOMPLEMENT}>" (ID 39) has unconnected outputs: [output]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.shiftRight(DFEVar.java:253)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:57)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "&" (ID 41) has unconnected outputs: [result]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.and(DFEVar.java:545)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:58)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "<{HWOffsetFix:32, 0, TWOSCOMPLEMENT}>" (ID 44) has unconnected outputs: [output]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.shiftRight(DFEVar.java:253)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:57)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "&" (ID 46) has unconnected outputs: [result]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.and(DFEVar.java:545)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:58)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "<{HWOffsetFix:32, 0, TWOSCOMPLEMENT}>" (ID 49) has unconnected outputs: [output]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.shiftRight(DFEVar.java:253)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:57)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "&" (ID 51) has unconnected outputs: [result]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.and(DFEVar.java:545)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:58)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "<{HWOffsetFix:32, 0, TWOSCOMPLEMENT}>" (ID 54) has unconnected outputs: [output]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.shiftRight(DFEVar.java:253)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:57)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "&" (ID 56) has unconnected outputs: [result]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.and(DFEVar.java:545)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:58)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "<{HWOffsetFix:32, 0, TWOSCOMPLEMENT}>" (ID 59) has unconnected outputs: [output]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.shiftRight(DFEVar.java:253)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:57)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "&" (ID 61) has unconnected outputs: [result]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.and(DFEVar.java:545)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:58)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 63) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:77)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 64) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:78)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 275) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:77)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 276) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:78)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 487) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:77)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 488) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:78)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 699) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:77)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 700) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:78)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 911) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:77)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 912) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:78)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 1123) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:77)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 1124) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:78)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 1335) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:77)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 1336) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:78)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 1547) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:77)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	
+node "0.0" (ID 1548) has unconnected outputs: [value]
+stack trace of node origin follows:
+	com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.var(Constant.java:86)
+	prf_complete_v1.inv_MBlockKernel.<init>(inv_MBlockKernel.maxj:78)
+	prf_complete_v1.prf_complete_v1Manager.<init>(prf_complete_v1Manager.maxj:39)
+	prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)
+	

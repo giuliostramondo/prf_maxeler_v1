@@ -1,0 +1,99 @@
+/*
+    Copyright 2016 Giulio Stramondo
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package prf_complete_v1;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.RoundingMode;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+
+
+class CrossBar_29_11_2016Kernel extends Kernel {
+
+	private static final DFEType type = dfeInt(32);
+	static int p = PRFConstants.p;
+	static int q = PRFConstants.q;
+
+//	static int p = 1;
+//	static int q = 2;
+
+//	static int p = 2;
+//	static int q = 2;
+
+	//static int p = 2;
+	//static int q = 5;
+
+	protected CrossBar_29_11_2016Kernel(KernelParameters parameters) {
+		super(parameters);
+		//IMPORTANT without this optimization the default rounding mode is to the nearest-integer
+		optimization.pushRoundingMode(RoundingMode.TRUNCATE);
+		DFEVar input[] = new DFEVar[p*q];
+		DFEVar select_v_input[][] = new DFEVar[p][q];
+		DFEVar select_h_input[][] = new DFEVar[p][q];
+		DFEVar select[] = new DFEVar[p*q];
+
+		DFEVar output[] = new DFEVar[p*q];
+
+		//get the select input ( 2D )
+		for(int i=0;i<p;i++){
+			for(int j=0;j<q;j++){
+				select_v_input[i][j]= io.input("o_i_"+i+"_"+j, type);
+				select_h_input[i][j]= io.input("o_j_"+i+"_"+j, type);
+				}
+			}
+
+		for(int i=0;i<p;i++){
+			for(int j=0;j<q;j++){
+			 input[i*q+j] = io.input("a_input_"+i+"_"+j, type);
+			 select[i*q+j]= select_v_input[i][j]*constant.var(q)+ select_h_input[i][j];
+			}
+		}
+
+		for(int i=0;i<p;i++){
+			for(int j=0;j<q;j++){
+		select[i*q+j].simWatch("select"+i+"_"+j);
+			}
+			}
+		for(int i=0;i<p;i++){
+			for(int j=0;j<q;j++){
+
+				output[i*q+j] = Utils.CreateMux(p*q, input, select[i*q+j]);
+
+				//control.mux(select, input);
+
+			}
+		}
+		//Demux demux= demux("Demux");
+/*		for(int i =0 ; i< p ; i++)
+			for(int j =0; j< q; j++){
+		select[i][j].simWatch("select"+i+"_"+j);
+			}*/
+	for(int i =0 ; i< p ; i++)
+			for(int j =0; j< q; j++){
+		input[i*q+j].simWatch("input_"+i+"_"+j);
+			}
+
+		for(int i =0 ; i< p ; i++)
+			for(int j =0; j< q; j++){
+				output[i*q+j].simWatch("o_"+i+"_"+j);
+				io.output("o_"+i+"_"+j, output[i*q+j], type);
+			}
+	}
+
+}

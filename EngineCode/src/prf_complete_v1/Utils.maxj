@@ -1,0 +1,124 @@
+/*
+    Copyright 2016 Giulio Stramondo
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package prf_complete_v1;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+
+
+class Utils extends Kernel {
+/*
+ * Creates an N:1 multiplexer
+ * It is assumed that N is a power of 2  and that the select signal has at least log_2(N) bits.
+ */
+	static DFEVar CreateMux(int N, DFEVar inputs[], DFEVar select){
+		DFEVar tmp[] = new DFEVar[N];
+		for(int i = 0 ; i<N ; i++)
+			tmp[i]=inputs[i];
+
+		int shift=0;
+		for(int i = N/2; i>=1;i/=2){
+			for(int j = 0 ; j<i ; j++){
+				DFEVar sel = (select>>shift).cast(dfeUInt(1));
+				tmp[j] = sel ? tmp[2*j+1] : tmp[2*j];
+			}
+			shift++;
+		}
+		return tmp[0];
+	}
+	private static int xgcd_s(int b,int n){
+		int x0 = 1;
+		int x1 = 0;
+		int y0 = 0;
+		int y1 = 1;
+		int q;
+		int r;
+		while( n != 0){
+			/*				Python Implementation
+			 *             q, b, n = b // n, n, b % n
+            				x0, x1 = x1, x0 - q * x1
+            				y0, y1 = y1, y0 - q * y1
+			 */
+			q = b/n;
+			r = b%n;
+			b = n;
+			n = r;
+			int temp = x1;
+			x1 = x0 - q * x1;
+			x0 = temp;
+
+			temp = y1;
+			y1 = y0 - q * y1;
+			y0 = temp;
+		}
+		return y0;
+	}
+	private static int xgcd_t(int b,int n){
+		int x0 = 1;
+		int x1 = 0;
+		int y0 = 0;
+		int y1 = 1;
+		int q;
+		int r;
+		while( n != 0){
+			/*				Python Implementation
+			 *             q, b, n = b // n, n, b % n
+            				x0, x1 = x1, x0 - q * x1
+            				y0, y1 = y1, y0 - q * y1
+			 */
+			q = b/n;
+			r = b%n;
+			b = n;
+			n = r;
+			int temp = x1;
+			x1 = x0 - q * x1;
+			x0 = temp;
+
+			temp = y1;
+			y1 = y0 - q * y1;
+			y0 = temp;
+		}
+		return x0;
+	}
+	public static int compute_omega(int p,int q){
+		int sigma = 0;
+		int s = xgcd_s(p,q);
+		int omega = s + sigma *p;
+		while (omega <= 0){
+			sigma++;
+			omega = s + sigma *p;
+		}
+		return omega;
+	}
+	public static int compute_omega_2(int p,int q){
+		int sigma = 0;
+		int t = xgcd_t(p,q);
+		int omega = t + sigma *q;
+		while (omega <= 0){
+			sigma++;
+			omega = t + sigma *q;
+		}
+		return omega;
+	}
+
+	protected Utils(KernelParameters parameters) {
+		super(parameters);
+	}
+
+}

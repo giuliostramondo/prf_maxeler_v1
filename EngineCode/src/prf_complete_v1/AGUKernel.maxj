@@ -1,0 +1,87 @@
+/*
+    Copyright 2016 Giulio Stramondo
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package prf_complete_v1;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+
+class AGUKernel extends Kernel {
+
+	private static final DFEType type = dfeUInt(32);
+	private static final DFEType acc_type_type = dfeUInt(8);
+
+	//private static final DFEType out_type = dfeInt(32*16);
+	static int p = PRFConstants.p;
+	static int q = PRFConstants.q;
+
+	//The output vector type has  (p*q) pairs of coordinates (i,j)
+	private static final DFEVectorType<DFEVar> vectorType = new DFEVectorType<DFEVar>(type,p*q);
+
+	protected AGUKernel(KernelParameters parameters) {
+		super(parameters);
+
+		DFEVar index_i = io.input("index_i", type);
+		DFEVar index_j = io.input("index_j", type);
+		DFEVar acc_type = io.input("acc_type", type);
+
+
+
+		DFEVector<DFEVar> Rectangle = vectorType.newInstance(this);
+		DFEVector<DFEVar> Row = vectorType.newInstance(this);
+		DFEVector<DFEVar> Column = vectorType.newInstance(this);
+		DFEVector<DFEVar> MainDiag = vectorType.newInstance(this);
+		DFEVector<DFEVar> SecondaryDiag = vectorType.newInstance(this);
+		DFEVector<DFEVar> TransRectangle = vectorType.newInstance(this);
+
+		DFEVector<DFEVar> outVector;
+		//RECTANGLE
+		index_i.simWatch("index_i");
+		index_j.simWatch("index_j");
+		acc_type.simWatch("acc_type");
+
+		for(int i=0;i<p;i++){
+			for(int j=0;j<q;j++){
+				Rectangle[i*q+j]<==((index_i+i)<<16)|(index_j+j);
+				Row[i*q+j]<==((index_i)<<16)|(index_j+(i*q)+j);
+				Column[i*q+j]<==((index_i+(i*q)+j)<<16)|(index_j);
+				MainDiag[i*q+j]<==((index_i+(i*q)+j)<<16)|(index_j+(i*q)+j);
+				SecondaryDiag[i*q+j]<==((index_i+(i*q)+j)<<16)|(index_j-((i*q)+j));
+				TransRectangle[i*q+j]<==((index_i+j)<<16)|(index_j+i);
+			}
+		}
+
+
+		//Access type selection
+		outVector=acc_type.eq(constant.var(0)) ? Rectangle: constant.vect(p*q,0);
+		outVector=acc_type.eq(constant.var(1)) ? Row: outVector;
+		outVector=acc_type.eq(constant.var(2)) ? Column: outVector;
+		outVector=acc_type.eq(constant.var(3)) ? MainDiag: outVector;
+		outVector=acc_type.eq(constant.var(4)) ? SecondaryDiag: outVector;
+		outVector=acc_type.eq(constant.var(5)) ? TransRectangle: outVector;
+
+		outVector.simWatch("outVector");
+
+		io.output("outVector",outVector,vectorType);
+
+	}
+
+}

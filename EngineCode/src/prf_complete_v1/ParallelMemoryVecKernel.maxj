@@ -1,0 +1,81 @@
+/*
+    Copyright 2016 Giulio Stramondo
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package prf_complete_v1;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.memory.Memory;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+
+class ParallelMemoryVecKernel extends Kernel {
+
+	private static final DFEType type = dfeInt(32);
+	private static final DFEType addressType = dfeInt(64);
+	static int p = PRFConstants.p;
+	static int q = PRFConstants.q;
+    static int MEMORY_DEPTH = PRFConstants.MEMORY_DEPTH;
+    static int MEMORY_ADDRESS_SIZE = PRFConstants.MEMORY_ADDRESS_SIZE; //log_2 of MEMORY_DEPTH;
+
+	protected ParallelMemoryVecKernel(KernelParameters parameters) {
+		super(parameters);
+
+
+		Memory<DFEVar> memorymodules [][] =  new Memory[p][q];
+
+
+		for(int i =0 ; i< p ; i++){
+			for(int j =0; j< q; j++)
+				memorymodules[i][j] = mem.alloc(dfeInt(32), MEMORY_DEPTH);
+
+		}
+
+
+		DFEVar write_enable = io.input("write_enable", type);
+
+		DFEVar output[][] = new DFEVar[p][q];
+
+		DFEVar input_data_arr[][] = new DFEVar[p][q];
+		DFEVar in_module_address[][] = new DFEVar[p][q];
+
+		for(int i =0 ; i< p ; i++)
+			for(int j =0; j< q; j++){
+			input_data_arr[i][j] = io.input("input_data_arr_"+i+"_"+j, type);
+			in_module_address[i][j] = io.input("in_module_addr_"+i+"_"+j,type);
+		}
+
+
+
+		for(int i =0 ; i< p ; i++)
+			for(int j =0; j< q; j++){
+			DFEVar enable = (write_enable>>(i*q+j)).cast(dfeUInt(1));
+			memorymodules[i][j].write((in_module_address[i][j]).cast(dfeUInt(MEMORY_ADDRESS_SIZE)), input_data_arr[i][j], enable);
+			output[i][j] =memorymodules[i][j].read((in_module_address[i][j]).cast(dfeUInt(MEMORY_ADDRESS_SIZE)));
+			output[i][j].simWatch("output_"+i+"_"+j);
+		}
+
+
+
+		for(int i =0 ; i< p ; i++)
+			for(int j =0; j< q; j++){
+				io.output("o_"+i+"_"+j, output[i][j], type);
+			}
+
+	}
+
+}

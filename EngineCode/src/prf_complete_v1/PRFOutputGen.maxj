@@ -1,0 +1,106 @@
+/*
+    Copyright 2016 Giulio Stramondo
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package prf_complete_v1;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+
+
+
+public class PRFOutputGen extends Kernel{
+	private static final DFEType type = dfeInt(32);
+	private static final DFEType addressType = dfeInt(64);
+
+	static int p = PRFConstants.p;
+	static int q = PRFConstants.q;
+	private static final DFEVectorType<DFEVar> vectorType = new DFEVectorType<DFEVar>(type,p*q);
+	static int SINGLE_MEM_DEPTH = PRFConstants.MEMORY_DEPTH;
+	//log_2 of the memory depth
+	static int MEM_ADDRESS_BIT = PRFConstants.MEMORY_ADDRESS_SIZE;
+	protected PRFOutputGen(KernelParameters parameters) {
+		super(parameters);
+		//DFEVar tick = control.count.simpleCounter(32).cast(type);
+
+		/*
+		 * The first iteration writes row by row increasing numbers
+		 * Then the values are read rectangle by rectangle
+		 */
+		//DFEVar index_i=constant.var(0);
+		//DFEVar index_i=KernelMath.modulo(tick,PRFConstants.N).cast(type);
+		//DFEVar index_j=constant.var(0);
+		//DFEVar acc_type= KernelMath.abs((-1*(tick/PRFConstants.N)+1)*constant.var(1));
+		//DFEVar write_enable = constant.var(0xAAAA);
+
+//		DFEVar write_enable = KernelMath.abs((-1*(tick/PRFConstants.N)+1)*0xFFFF);
+//		write_enable.simWatch("write_enable");
+//		index_i.simWatch("index_i");
+//		index_j.simWatch("index_j");
+//		acc_type.simWatch("acc_type");
+//		io.output("write_enable",write_enable.cast(type), type);
+//		io.output("index_i",index_i.cast(type), type);
+//		io.output("index_j",index_j.cast(type), type);
+//		io.output("acc_type",acc_type.cast(type), type);
+		//DFEVector<DFEVar> Xc = io.input("Xc", Def.DataVecType, EnInput);
+		DFEVector<DFEVar> output =  new DFEVectorType<DFEVar>(type,p*q).newInstance(this);
+
+		//DFEVar out =  io.input("o_0_0", type).cast(dfeUInt(32*p*q));
+		//DFEVector<DFEVar> output =  null;
+		for(int i =0; i<p;i++){
+			for(int j=0; j<q ; j++){
+				//io.output("input_data_arr"+i+"_"+j,stream.offset(input, (i*q)+j), type);
+				output[(i*q)+j] <==io.input("o_"+i+"_"+j, type);
+				//if(j!=0 || i!=0)
+					//out = out | io.input("o_"+i+"_"+j, type).cast(dfeUInt(32*p*q))<< p*q-(i*q)+j+1;
+				//stream.offset(input, (i*q)+j).simWatch("input_data_arr"+i+"_"+j);
+				//io.output("out_"+i+"_"+j,output[(i*q)+j], type);
+//				(p*q*tick+(i*q)+j).cast(type).simWatch("input_data_arr"+i+"_"+j);
+			}
+		}
+
+//		input[0].simWatch("input_data_arr"+0+"_"+0);
+//		//input.simWatch("input_data_arr"+0+"_"+0);
+//		input[1].simWatch("input_data_arr"+0+"_"+1);
+//		input[2].simWatch("input_data_arr"+0+"_"+2);
+//		input[3].simWatch("input_data_arr"+0+"_"+3);
+//		input[4].simWatch("input_data_arr"+1+"_"+0);
+//		input[5].simWatch("input_data_arr"+1+"_"+1);
+//		input[6].simWatch("input_data_arr"+1+"_"+2);
+//		input[7].simWatch("input_data_arr"+1+"_"+3);
+//		input[p*q].simWatch("index_i");
+//		input[p*q+1].simWatch("index_j");
+//		input[p*q+2].simWatch("acc_type");
+//		input[p*q+3].simWatch("write_enable");
+		output.simWatch("output_vector");
+					   io.output("output",output,vectorType );
+		               //io.output("output",out, dfeUInt(32*p*q));
+//		               io.output("index_j",input[p*q+1], type);
+//	               io.output("acc_type",input[p*q+2], type);
+//		               io.output("write_enable",input[p*q+3], type);
+//
+//
+//		               stream.offset(input, p*q).simWatch("index_i");
+//	               stream.offset(input, p*q+1).simWatch("index_j");
+//		               stream.offset(input, p*q+2).simWatch("acc_type");
+//		               stream.offset(input, p*q+3).simWatch("write_enable");
+
+	}
+
+}

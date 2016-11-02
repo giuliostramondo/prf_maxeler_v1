@@ -1,0 +1,1103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Graph version="2015.2 (simulation only)" pxg_version="1" maxfile_name="prf_complete_v1" design_name="PRFInputGen" compilation_phase="original" has_longest_path="false">
+	<Node group="[]" id="0" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_input_vector_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_input_vector_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_input_vector_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="1" dst_node_input="a" src_node_id="0" src_node_output="io_input_vector_force_disabled" />
+	<Node group="[]" id="1" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="2" dst_node_input="enable" src_node_id="1" src_node_output="result" />
+	<Node group="[]" id="2" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeInput">
+		<Input name="enable" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="5" name="data" type="dfeBits(384)" />
+		<Text>Input(input_vector)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>input_vector</Name>
+	</Node>
+	<Edge dst_node_id="3" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="5" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="7" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="9" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="11" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="13" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="15" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="17" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="19" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="21" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="23" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="25" dst_node_input="a" src_node_id="2" src_node_output="data" />
+	<Node group="[]" id="3" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[31:0]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>0</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="4" dst_node_input="input" src_node_id="3" src_node_output="result" />
+	<Node group="[]" id="4" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="input_data_arr0_0" src_node_id="4" src_node_output="output" />
+	<Edge dst_node_id="32" dst_node_input="data" src_node_id="4" src_node_output="output" />
+	<Node group="[]" id="5" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[63:32]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>32</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="6" dst_node_input="input" src_node_id="5" src_node_output="result" />
+	<Node group="[]" id="6" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="input_data_arr0_1" src_node_id="6" src_node_output="output" />
+	<Edge dst_node_id="37" dst_node_input="data" src_node_id="6" src_node_output="output" />
+	<Node group="[]" id="7" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[95:64]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>64</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="8" dst_node_input="input" src_node_id="7" src_node_output="result" />
+	<Node group="[]" id="8" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="input_data_arr0_2" src_node_id="8" src_node_output="output" />
+	<Edge dst_node_id="42" dst_node_input="data" src_node_id="8" src_node_output="output" />
+	<Node group="[]" id="9" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[127:96]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>96</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="10" dst_node_input="input" src_node_id="9" src_node_output="result" />
+	<Node group="[]" id="10" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="input_data_arr0_3" src_node_id="10" src_node_output="output" />
+	<Edge dst_node_id="47" dst_node_input="data" src_node_id="10" src_node_output="output" />
+	<Node group="[]" id="11" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[159:128]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>128</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="12" dst_node_input="input" src_node_id="11" src_node_output="result" />
+	<Node group="[]" id="12" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="input_data_arr1_0" src_node_id="12" src_node_output="output" />
+	<Edge dst_node_id="52" dst_node_input="data" src_node_id="12" src_node_output="output" />
+	<Node group="[]" id="13" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[191:160]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>160</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="14" dst_node_input="input" src_node_id="13" src_node_output="result" />
+	<Node group="[]" id="14" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="input_data_arr1_1" src_node_id="14" src_node_output="output" />
+	<Edge dst_node_id="57" dst_node_input="data" src_node_id="14" src_node_output="output" />
+	<Node group="[]" id="15" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[223:192]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>192</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="16" dst_node_input="input" src_node_id="15" src_node_output="result" />
+	<Node group="[]" id="16" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="input_data_arr1_2" src_node_id="16" src_node_output="output" />
+	<Edge dst_node_id="62" dst_node_input="data" src_node_id="16" src_node_output="output" />
+	<Node group="[]" id="17" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[255:224]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>224</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="18" dst_node_input="input" src_node_id="17" src_node_output="result" />
+	<Node group="[]" id="18" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="input_data_arr1_3" src_node_id="18" src_node_output="output" />
+	<Edge dst_node_id="67" dst_node_input="data" src_node_id="18" src_node_output="output" />
+	<Node group="[]" id="19" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[287:256]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>256</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="20" dst_node_input="input" src_node_id="19" src_node_output="result" />
+	<Node group="[]" id="20" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="index_i" src_node_id="20" src_node_output="output" />
+	<Edge dst_node_id="72" dst_node_input="data" src_node_id="20" src_node_output="output" />
+	<Node group="[]" id="21" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[319:288]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>288</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="22" dst_node_input="input" src_node_id="21" src_node_output="result" />
+	<Node group="[]" id="22" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="index_j" src_node_id="22" src_node_output="output" />
+	<Edge dst_node_id="77" dst_node_input="data" src_node_id="22" src_node_output="output" />
+	<Node group="[]" id="23" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[351:320]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>320</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="24" dst_node_input="input" src_node_id="23" src_node_output="result" />
+	<Node group="[]" id="24" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="acc_type" src_node_id="24" src_node_output="output" />
+	<Edge dst_node_id="82" dst_node_input="data" src_node_id="24" src_node_output="output" />
+	<Node group="[]" id="25" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSlice">
+		<Input name="a" type="dfeBits(384)" />
+		<Output latency="0" name="result" type="dfeBits(32)" />
+		<Text>[383:352]</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Base>352</Base>
+		<Width>32</Width>
+	</Node>
+	<Edge dst_node_id="26" dst_node_input="input" src_node_id="25" src_node_output="result" />
+	<Node group="[]" id="26" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeReinterpret">
+		<Input name="input" type="dfeBits(32)" />
+		<Output latency="0" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>&lt;{HWOffsetFix:32, 0, TWOSCOMPLEMENT}&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:64)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="27" dst_node_input="write_enable" src_node_id="26" src_node_output="output" />
+	<Edge dst_node_id="87" dst_node_input="data" src_node_id="26" src_node_output="output" />
+	<Node group="[]" id="27" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeWatch">
+		<Input name="input_data_arr0_0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="input_data_arr0_1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="input_data_arr0_2" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="input_data_arr0_3" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="input_data_arr1_0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="input_data_arr1_1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="input_data_arr1_2" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="input_data_arr1_3" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="index_i" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="index_j" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="acc_type" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="write_enable" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>WatchNode</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.simWatch(DFEVar.java:1104)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:69)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Node group="[]" id="28" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="31" dst_node_input="a" src_node_id="28" src_node_output="value" />
+	<Node group="[]" id="29" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_input_data_arr0_0_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_input_data_arr0_0_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_input_data_arr0_0_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="30" dst_node_input="a" src_node_id="29" src_node_output="io_input_data_arr0_0_force_disabled" />
+	<Node group="[]" id="30" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="31" dst_node_input="b" src_node_id="30" src_node_output="result" />
+	<Node group="[]" id="31" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="32" dst_node_input="output_control" src_node_id="31" src_node_output="result" />
+	<Node group="[]" id="32" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(input_data_arr0_0)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>input_data_arr0_0</Name>
+	</Node>
+	<Node group="[]" id="33" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="36" dst_node_input="a" src_node_id="33" src_node_output="value" />
+	<Node group="[]" id="34" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_input_data_arr0_1_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_input_data_arr0_1_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_input_data_arr0_1_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="35" dst_node_input="a" src_node_id="34" src_node_output="io_input_data_arr0_1_force_disabled" />
+	<Node group="[]" id="35" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="36" dst_node_input="b" src_node_id="35" src_node_output="result" />
+	<Node group="[]" id="36" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="37" dst_node_input="output_control" src_node_id="36" src_node_output="result" />
+	<Node group="[]" id="37" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(input_data_arr0_1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>input_data_arr0_1</Name>
+	</Node>
+	<Node group="[]" id="38" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="41" dst_node_input="a" src_node_id="38" src_node_output="value" />
+	<Node group="[]" id="39" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_input_data_arr0_2_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_input_data_arr0_2_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_input_data_arr0_2_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="40" dst_node_input="a" src_node_id="39" src_node_output="io_input_data_arr0_2_force_disabled" />
+	<Node group="[]" id="40" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="41" dst_node_input="b" src_node_id="40" src_node_output="result" />
+	<Node group="[]" id="41" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="42" dst_node_input="output_control" src_node_id="41" src_node_output="result" />
+	<Node group="[]" id="42" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(input_data_arr0_2)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>input_data_arr0_2</Name>
+	</Node>
+	<Node group="[]" id="43" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="46" dst_node_input="a" src_node_id="43" src_node_output="value" />
+	<Node group="[]" id="44" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_input_data_arr0_3_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_input_data_arr0_3_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_input_data_arr0_3_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="45" dst_node_input="a" src_node_id="44" src_node_output="io_input_data_arr0_3_force_disabled" />
+	<Node group="[]" id="45" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="46" dst_node_input="b" src_node_id="45" src_node_output="result" />
+	<Node group="[]" id="46" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="47" dst_node_input="output_control" src_node_id="46" src_node_output="result" />
+	<Node group="[]" id="47" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(input_data_arr0_3)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>input_data_arr0_3</Name>
+	</Node>
+	<Node group="[]" id="48" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="51" dst_node_input="a" src_node_id="48" src_node_output="value" />
+	<Node group="[]" id="49" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_input_data_arr1_0_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_input_data_arr1_0_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_input_data_arr1_0_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="50" dst_node_input="a" src_node_id="49" src_node_output="io_input_data_arr1_0_force_disabled" />
+	<Node group="[]" id="50" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="51" dst_node_input="b" src_node_id="50" src_node_output="result" />
+	<Node group="[]" id="51" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="52" dst_node_input="output_control" src_node_id="51" src_node_output="result" />
+	<Node group="[]" id="52" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(input_data_arr1_0)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>input_data_arr1_0</Name>
+	</Node>
+	<Node group="[]" id="53" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="56" dst_node_input="a" src_node_id="53" src_node_output="value" />
+	<Node group="[]" id="54" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_input_data_arr1_1_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_input_data_arr1_1_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_input_data_arr1_1_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="55" dst_node_input="a" src_node_id="54" src_node_output="io_input_data_arr1_1_force_disabled" />
+	<Node group="[]" id="55" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="56" dst_node_input="b" src_node_id="55" src_node_output="result" />
+	<Node group="[]" id="56" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="57" dst_node_input="output_control" src_node_id="56" src_node_output="result" />
+	<Node group="[]" id="57" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(input_data_arr1_1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>input_data_arr1_1</Name>
+	</Node>
+	<Node group="[]" id="58" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="61" dst_node_input="a" src_node_id="58" src_node_output="value" />
+	<Node group="[]" id="59" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_input_data_arr1_2_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_input_data_arr1_2_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_input_data_arr1_2_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="60" dst_node_input="a" src_node_id="59" src_node_output="io_input_data_arr1_2_force_disabled" />
+	<Node group="[]" id="60" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="61" dst_node_input="b" src_node_id="60" src_node_output="result" />
+	<Node group="[]" id="61" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="62" dst_node_input="output_control" src_node_id="61" src_node_output="result" />
+	<Node group="[]" id="62" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(input_data_arr1_2)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>input_data_arr1_2</Name>
+	</Node>
+	<Node group="[]" id="63" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="66" dst_node_input="a" src_node_id="63" src_node_output="value" />
+	<Node group="[]" id="64" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_input_data_arr1_3_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_input_data_arr1_3_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_input_data_arr1_3_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="65" dst_node_input="a" src_node_id="64" src_node_output="io_input_data_arr1_3_force_disabled" />
+	<Node group="[]" id="65" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="66" dst_node_input="b" src_node_id="65" src_node_output="result" />
+	<Node group="[]" id="66" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="67" dst_node_input="output_control" src_node_id="66" src_node_output="result" />
+	<Node group="[]" id="67" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(input_data_arr1_3)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:70)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>input_data_arr1_3</Name>
+	</Node>
+	<Node group="[]" id="68" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:88)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="71" dst_node_input="a" src_node_id="68" src_node_output="value" />
+	<Node group="[]" id="69" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_index_i_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_index_i_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:88)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_index_i_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="70" dst_node_input="a" src_node_id="69" src_node_output="io_index_i_force_disabled" />
+	<Node group="[]" id="70" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:88)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="71" dst_node_input="b" src_node_id="70" src_node_output="result" />
+	<Node group="[]" id="71" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:88)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="72" dst_node_input="output_control" src_node_id="71" src_node_output="result" />
+	<Node group="[]" id="72" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(index_i)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:88)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>index_i</Name>
+	</Node>
+	<Node group="[]" id="73" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:89)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="76" dst_node_input="a" src_node_id="73" src_node_output="value" />
+	<Node group="[]" id="74" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_index_j_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_index_j_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:89)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_index_j_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="75" dst_node_input="a" src_node_id="74" src_node_output="io_index_j_force_disabled" />
+	<Node group="[]" id="75" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:89)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="76" dst_node_input="b" src_node_id="75" src_node_output="result" />
+	<Node group="[]" id="76" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:89)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="77" dst_node_input="output_control" src_node_id="76" src_node_output="result" />
+	<Node group="[]" id="77" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(index_j)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:89)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>index_j</Name>
+	</Node>
+	<Node group="[]" id="78" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:90)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="81" dst_node_input="a" src_node_id="78" src_node_output="value" />
+	<Node group="[]" id="79" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_acc_type_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_acc_type_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:90)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_acc_type_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="80" dst_node_input="a" src_node_id="79" src_node_output="io_acc_type_force_disabled" />
+	<Node group="[]" id="80" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:90)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="81" dst_node_input="b" src_node_id="80" src_node_output="result" />
+	<Node group="[]" id="81" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:90)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="82" dst_node_input="output_control" src_node_id="81" src_node_output="result" />
+	<Node group="[]" id="82" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(acc_type)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:90)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>acc_type</Name>
+	</Node>
+	<Node group="[]" id="83" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:91)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="86" dst_node_input="a" src_node_id="83" src_node_output="value" />
+	<Node group="[]" id="84" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_write_enable_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_write_enable_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:91)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>io_write_enable_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="85" dst_node_input="a" src_node_id="84" src_node_output="io_write_enable_force_disabled" />
+	<Node group="[]" id="85" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:91)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="86" dst_node_input="b" src_node_id="85" src_node_output="result" />
+	<Node group="[]" id="86" isControl="false" isVisible="false" pipelineFactor="0.0" type="NodeAnd">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&amp;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:91)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="87" dst_node_input="output_control" src_node_id="86" src_node_output="result" />
+	<Node group="[]" id="87" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(write_enable)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+prf_complete_v1.PRFInputGen.&lt;init&gt;(PRFInputGen.maxj:91)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:41)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>write_enable</Name>
+	</Node>
+	<Node group="[]" id="92" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="93" dst_node_input="load" src_node_id="92" src_node_output="value" />
+	<Node group="[]" id="88" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantDouble">
+		<Output latency="0" name="value" type="dfeUntypedConst()" />
+		<Text>1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1.0</Value>
+	</Node>
+	<Edge dst_node_id="90" dst_node_input="enable" src_node_id="88" src_node_output="value" />
+	<Node group="[]" id="89" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(49, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:49, 0, UNSIGNED}\n0x1000000000000; 2.81474976710656E14</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1000000000000000000000000000000000000000000000000</Value>
+		<HexValue>0x1000000000000</HexValue>
+		<NumericValue>2.81474976710656E14</NumericValue>
+	</Node>
+	<Edge dst_node_id="90" dst_node_input="max" src_node_id="89" src_node_output="value" />
+	<Node group="[]" id="90" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeCounterV1">
+		<Input name="enable" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="max" type="dfeOffsetFix(49, 0, UNSIGNED)" />
+		<Output latency="0" name="count" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Output latency="0" name="wrap" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Increment>1</Increment>
+		<WrapValue>0</WrapValue>
+		<InitValue>0</InitValue>
+		<CountMode>NUMERIC_INCREMENTING</CountMode>
+		<WrapMode>COUNT_LT_MAX_THEN_WRAP</WrapMode>
+	</Node>
+	<Edge dst_node_id="91" dst_node_input="input" src_node_id="90" src_node_output="count" />
+	<Node group="[]" id="91" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Text>stream offset: 1</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="93" dst_node_input="data" src_node_id="91" src_node_output="output" />
+	<Node group="[]" id="93" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeOutputMappedReg">
+		<Input name="load" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Text>Scalar output (current_run_cycle_count)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>current_run_cycle_count</Name>
+	</Node>
+	<Node group="[]" id="94" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantDouble">
+		<Output latency="0" name="value" type="dfeUntypedConst()" />
+		<Text>1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1.0</Value>
+	</Node>
+	<Edge dst_node_id="96" dst_node_input="enable" src_node_id="94" src_node_output="value" />
+	<Node group="[]" id="95" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(49, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:49, 0, UNSIGNED}\n0x1000000000000; 2.81474976710656E14</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Value>1000000000000000000000000000000000000000000000000</Value>
+		<HexValue>0x1000000000000</HexValue>
+		<NumericValue>2.81474976710656E14</NumericValue>
+	</Node>
+	<Edge dst_node_id="96" dst_node_input="max" src_node_id="95" src_node_output="value" />
+	<Node group="[]" id="96" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeCounterV1">
+		<Input name="enable" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="max" type="dfeOffsetFix(49, 0, UNSIGNED)" />
+		<Output latency="0" name="count" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Output latency="0" name="wrap" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Increment>1</Increment>
+		<WrapValue>0</WrapValue>
+		<InitValue>0</InitValue>
+		<CountMode>NUMERIC_INCREMENTING</CountMode>
+		<WrapMode>COUNT_LT_MAX_THEN_WRAP</WrapMode>
+	</Node>
+	<Edge dst_node_id="99" dst_node_input="a" src_node_id="96" src_node_output="count" />
+	<Node group="[]" id="98" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="run_cycle_count" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Text>Scalar input (run_cycle_count)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+		<Name>run_cycle_count</Name>
+	</Node>
+	<Edge dst_node_id="99" dst_node_input="b" src_node_id="98" src_node_output="run_cycle_count" />
+	<Node group="[]" id="99" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeEq">
+		<Input name="a" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>==</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="97" dst_node_input="start" src_node_id="99" src_node_output="result" />
+	<Node group="[]" id="97" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeFlush">
+		<Input name="start" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>flush on trigger</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.custom.CustomManager.addKernel(CustomManager.java:1003)
+prf_complete_v1.prf_complete_v1Manager.&lt;init&gt;(prf_complete_v1Manager.maxj:40)
+prf_complete_v1.prf_complete_v1Manager.main(prf_complete_v1Manager.maxj:130)</OriginStackTrace>
+	</Node>
+</Graph>

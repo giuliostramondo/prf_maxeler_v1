@@ -1,0 +1,128 @@
+/*
+    Copyright 2016 Giulio Stramondo
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package prf_complete_v1;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.RoundingMode;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+/*
+ * This is the an implementation of the cross bar which includes the m function
+ */
+class MBlockKernel extends Kernel {
+
+	private static final DFEType type = dfeInt(32);
+	static int p = PRFConstants.p;
+	static int q = PRFConstants.q;
+
+	static PRFConstants.MappingScheme mappingScheme=PRFConstants.mappingScheme;
+	private static final DFEVectorType<DFEVar> vectorType = new DFEVectorType<DFEVar>(type,p*q);
+	protected MBlockKernel(KernelParameters parameters) {
+		super(parameters);
+		//IMPORTANT without this optimization the default rounding mode is to the nearest-integer
+		optimization.pushRoundingMode(RoundingMode.TRUNCATE);
+		//DFEVar input[] = new DFEVar[p*q];
+		DFEVar index_i[][] = new DFEVar[p][q];
+		DFEVar index_j[][] = new DFEVar[p][q];
+		DFEVar output_i[][] = new DFEVar[p][q];
+		DFEVar output_j[][] = new DFEVar[p][q];
+		//DFEVar mappingScheme = io.input("shape", type);
+		DFEVector<DFEVar> AGU_Output = io.input("outAGU",vectorType);
+
+
+		for(int i =0; i<p;i++){
+			for(int j=0; j<q ; j++){
+				index_i[i][j]= AGU_Output[i*q+j]>>16;
+				index_j[i][j]= AGU_Output[i*q+j]&0x0000FFFF;
+			}
+		}
+
+		//DFEVar ReRo = mappingScheme.eq(constant.var(0));
+		//DFEVar ReCo = mappingScheme.eq(constant.var(1));
+		//DFEVar RoCo = mappingScheme.eq(constant.var(2));
+		//DFEVar ReTr = mappingScheme.eq(constant.var(3));
+
+		for(int i=0;i<p;i++){
+			for(int j=0;j<q;j++){
+
+				index_i[i][j].simWatch("i"+i+"_"+j);
+				index_j[i][j].simWatch("j"+i+"_"+j);
+				if (mappingScheme == PRFConstants.MappingScheme.ReO){
+					//The one below is the M function for the ReO
+					output_i[i][j] = KernelMath.modulo(index_i[i][j],p).cast(type);//m_v(i,j,scheme);
+					output_j[i][j] = KernelMath.modulo(index_j[i][j],q).cast(type);      //m_h(i,j,scheme);
+					}
+				if (mappingScheme == PRFConstants.MappingScheme.ReRo){
+				//The one below is the M function for the ReRo
+				output_i[i][j] = KernelMath.modulo(index_i[i][j]+
+									KernelMath.floor(index_j[i][j]/q),p).cast(type);//m_v(i,j,scheme);
+				output_j[i][j] = KernelMath.modulo(index_j[i][j],q).cast(type);      //m_h(i,j,scheme);
+				}
+				else if (mappingScheme == PRFConstants.MappingScheme.ReCo){
+				//The one below is the M function for the ReCo
+				output_i[i][j] = KernelMath.modulo(index_i[i][j],p).cast(type);//m_v(i,j,scheme);
+				output_j[i][j] = KernelMath.modulo(KernelMath.floor(index_i[i][j]/p).cast(type)
+									+index_j[i][j],q).cast(type);      //m_h(i,j,scheme);
+				}
+
+				else if (mappingScheme == PRFConstants.MappingScheme.RoCo){
+				//The one below is the M function for the RoCo
+				//(index_i+ (int)floor( index_j/q ))%p;
+				output_i[i][j] =KernelMath.modulo(index_i[i][j]+KernelMath.floor(index_j[i][j]/q),p).cast(type);//m_v(i,j,scheme);
+				// ((int)floor(index_i/p) + index_j)%q;
+				output_j[i][j] =KernelMath.modulo(KernelMath.floor(index_i[i][j]/p).cast(type)+index_j[i][j],q).cast(type);
+				}
+
+				else if (  mappingScheme == PRFConstants.MappingScheme.ReTr){
+				//The one below is the M function for the ReTr
+					if(p<q){
+						//	index_i%p;
+						output_i[i][j] = KernelMath.modulo(index_i[i][j],q).cast(type);//m_v(i,j,scheme);
+						// (index_i-index_i%p+index_j)%q;
+						output_j[i][j] = KernelMath.modulo(index_i[i][j]- KernelMath.modulo(index_i[i][j],p).cast(type)+index_j[i][j],q).cast(type);
+					}else{
+						//	(index_i+index_j-(index_j%q))%q;
+						output_i[i][j] = KernelMath.modulo(index_i[i][j]- KernelMath.modulo(index_j[i][j],q).cast(type)+index_j[i][j],q).cast(type);//m_v(i,j,scheme);
+						// index_j%q;
+						output_j[i][j] = KernelMath.modulo(index_j[i][j],q);
+					}
+				}
+
+				output_i[i][j].simWatch("output_i_"+i+"_"+j);
+				output_j[i][j].simWatch("output_j_"+i+"_"+j);
+
+			}
+		}
+
+
+
+
+		for(int i =0 ; i< p ; i++)
+			for(int j =0; j< q; j++){
+				output_i[i][j].simWatch("o_i_"+i+"_"+j);
+				output_j[i][j].simWatch("o_j_"+i+"_"+j);
+				io.output("o_i_"+i+"_"+j, output_i[i][j], type);
+				io.output("o_j_"+i+"_"+j, output_j[i][j], type);
+			}
+	}
+
+}

@@ -1,0 +1,41 @@
+/*
+    Copyright 2016 Giulio Stramondo
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package prf_complete_v1;
+
+
+
+public class PRFConstants {
+	//static final DFEType type = dfeInt(32);
+	//static final DFEType addressType = dfeInt(64);
+	static int p = 2;
+	static int q = 4;
+    static int M = 20;
+    static int N = 20;
+    static int MEMORY_DEPTH = 50;
+    static int MEMORY_ADDRESS_SIZE = 6; //log_2 of MEMORY_DEPTH;
+    static int FREQUENCY = 100;
+	static enum MappingScheme {
+		 ReO,
+		 ReRo,
+		 ReCo,
+		 RoCo,
+		 ReTr,
+		}
+	static MappingScheme mappingScheme=MappingScheme.ReCo;
+
+}
