@@ -24,10 +24,10 @@ public class PRFConstants {
 	//static final DFEType addressType = dfeInt(64);
 	static int p = 2;
 	static int q = 4;
-    static int M = 20;
-    static int N = 20;
-    static int MEMORY_DEPTH = 50;
-    static int MEMORY_ADDRESS_SIZE = 6; //log_2 of MEMORY_DEPTH;
+    static int M = 512;
+    static int N = 512;
+    static int MEMORY_DEPTH = 32768;
+    static int MEMORY_ADDRESS_SIZE = 15; //log_2 of MEMORY_DEPTH;
     static int FREQUENCY = 100;
 	static enum MappingScheme {
 		 ReO,

@@ -122,7 +122,7 @@ int32_t* all_accesses(int p, int q, acc_type shape, int N, int M, int *el_counte
     return input_data;
 }
 
-int32_t* fillPRF(int p, int q, scheme s, int A_test[N][M], int *el_counter){
+int32_t* fillPRF(int p, int q, scheme s, int **A_test, int *el_counter){
    // input_data contains p*q integers of input_data;
    // i,j coordinates of the block access
    // int of access type ( RECTANGLE ->0 , ROW -> 1, COL->2, MAIN_DIAG -> 3, SECONDARY_DIAG ->4, TRANS_RECTANGLE -> 5
@@ -242,7 +242,7 @@ int32_t* fillPRF(int p, int q, scheme s, int A_test[N][M], int *el_counter){
     return input_data;
 }
 
-int32_t* generate_expected_output(int p, int q, int A_test[N][M], int32_t* input_data, int size){
+int32_t* generate_expected_output(int p, int q, int** A_test, int32_t* input_data, int size){
     int i,j;
     int32_t* expected_output = (int32_t*) malloc(sizeof(int32_t)*p*q*size);
     for(i=0;i<size;i++){

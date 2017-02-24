@@ -98,9 +98,9 @@ Options parseArguments(int argc, char** argv){
     Options res;
     res.p=2;
     res.q=4;
-    res.N=14;
-    res.M=8;
-    res.s = RECTANGLE_ONLY;
+    res.N=512;
+    res.M=512;
+    res.s = RECT_COL;
     res.error=0;
 
 

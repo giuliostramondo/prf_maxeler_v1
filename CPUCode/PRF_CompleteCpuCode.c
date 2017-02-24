@@ -41,8 +41,13 @@ int main(int argc, char* argv[])
     N = parameters.N;
     M = parameters.M;
     scheme s = parameters.s;
-    int A_test[N][M];
+    //int A_test[N][M];
     
+    int **A_test = (int**)malloc(sizeof(int*)*N);
+
+    for(i=0;i<N;i++){
+        A_test[i]= (int*)malloc(sizeof(int)*M);
+    }
     for(i=0;i<N;i++){
         for(j=0;j<M;j++){
             A_test[i][j]= i*M+j;
