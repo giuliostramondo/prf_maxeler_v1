@@ -144,7 +144,7 @@ int32_t* fillPRF(int p, int q, scheme s, int **A_test, int *el_counter){
                     input_data[counter*(p*q+4)+p*q] = i;
                     input_data[counter*(p*q+4)+p*q+1] = j;
                     input_data[counter*(p*q+4)+p*q+2] = RECTANGLE;
-                    input_data[counter*(p*q+4)+p*q+3] = 0xFFFF; // write 
+                    input_data[counter*(p*q+4)+p*q+3] = 0xFFFFFFFF; // write 
                     counter++;
                 }
             }
